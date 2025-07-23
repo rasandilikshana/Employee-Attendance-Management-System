@@ -39,8 +39,15 @@ class AuthController extends Controller
         ]);
 
         try {
-            // Assign employee role by default
-            $user->assignRole('employee');
+            // Assign employee role by default for API guard
+            $employeeRole = \Spatie\Permission\Models\Role::where('name', 'employee')
+                ->where('guard_name', 'api')
+                ->first();
+            
+            if ($employeeRole) {
+                $user->assignRole($employeeRole);
+            }
+            
             $token = $user->createToken('AuthToken')->accessToken;
         } catch (\Exception $e) {
             return response()->json([
