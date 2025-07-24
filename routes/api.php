@@ -2,10 +2,20 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AttendanceController;
 use App\Http\Controllers\Api\UserManagementController;
 use App\Http\Controllers\Api\ReportController;
+
+// Health check endpoint for Docker
+Route::get('health', function () {
+    return response()->json([
+        'status' => 'healthy',
+        'timestamp' => now(),
+        'database' => DB::connection()->getPdo() ? 'connected' : 'disconnected'
+    ]);
+});
 
 // Public authentication routes
 Route::prefix('auth')->group(function () {

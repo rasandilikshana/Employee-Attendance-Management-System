@@ -118,6 +118,124 @@ php artisan serve
 
 The application will be available at `http://127.0.0.1:8000`
 
+## 🐳 Docker Installation (Recommended)
+
+### Prerequisites for Docker Setup
+- Docker
+- Docker Compose
+
+### Quick Start with Docker
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/rasandilikshana/Employee-Attendance-Management-System.git
+   cd Employee-Attendance-Management-System
+   ```
+
+2. **Build and Start Services**
+   ```bash
+   docker-compose up -d --build
+   ```
+
+3. **Wait for Services to Initialize**
+   The application will automatically:
+   - Set up the MySQL database
+   - Run migrations
+   - Generate application keys
+   - Create Passport keys and clients
+   - Seed the database with default users
+
+4. **Access the Application**
+   - **Web Application:** http://localhost:8000
+   - **API Base URL:** http://localhost:8000/api
+   - **phpMyAdmin:** http://localhost:8080 (optional database management)
+
+### Docker Services
+
+| Service | Port | Description |
+|---------|------|-------------|
+| Web App | 8000 | Laravel application |
+| MySQL | 3307 | Database server |
+| phpMyAdmin | 8080 | Database management (optional) |
+
+### Docker Commands
+
+```bash
+# Start services
+docker-compose up -d
+
+# Stop services
+docker-compose down
+
+# View logs
+docker-compose logs -f app
+
+# Rebuild and restart
+docker-compose up -d --build
+
+# Access application container
+docker-compose exec app bash
+
+# Run Laravel commands in container
+docker-compose exec app php artisan migrate
+docker-compose exec app php artisan db:seed
+```
+
+### Environment Variables for Docker
+
+The docker-compose.yml includes production-ready environment variables. For customization, you can override them or create a `.env.docker` file.
+
+### 🚀 Docker Build Process
+
+The Docker setup includes automatic initialization:
+
+1. **Application Key Generation** - Automatically generates Laravel APP_KEY
+2. **Database Setup** - Waits for MySQL to be ready, then runs migrations
+3. **Passport Configuration** - Generates OAuth keys and creates personal access client
+4. **Database Seeding** - Seeds default admin and employee users
+5. **Cache Optimization** - Caches config, routes, and views for production
+6. **Apache Server** - Starts Apache with proper PHP-FPM configuration
+
+### 📋 Build Logs Overview
+
+When you run `docker-compose up -d --build`, the system will:
+
+```bash
+# 1. Build the Docker image with PHP 8.2 + Apache
+# 2. Install all PHP dependencies via Composer
+# 3. Install Node.js dependencies and build frontend assets  
+# 4. Set proper file permissions for Laravel
+# 5. Create Apache virtual host configuration
+# 6. Start MySQL database container
+# 7. Start Laravel application container
+# 8. Initialize database and generate keys
+# 9. Seed database with default users
+```
+
+### 🔄 Container Initialization Process
+
+On first startup, the application container automatically:
+
+```bash
+Generating application key...
+Waiting for database...
+Running migrations...
+Generating Passport keys...
+Creating personal access client...
+Seeding database...
+Caching configuration...
+Starting Apache server...
+```
+
+### 🎯 Production Ready Features
+
+- **Optimized PHP-FPM** with Apache for better performance
+- **Production-grade MySQL 8.0** with persistent data storage
+- **Automated SSL/TLS ready** configuration
+- **Health checks** for container monitoring
+- **Volume mounts** for persistent data
+- **Network isolation** for security
+
 ## Default Users
 
 After seeding, you can login with these default accounts:
@@ -348,7 +466,3 @@ This project is open-sourced software licensed under the [MIT license](https://o
 ## Support
 
 For support and questions, please open an issue on the GitHub repository.
-
----
-
-**Happy Coding! 🚀**
