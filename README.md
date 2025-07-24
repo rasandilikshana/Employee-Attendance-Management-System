@@ -222,6 +222,12 @@ Content-Type: application/json
 
 **Note:** Requires valid Bearer token. Returns a new access token and revokes the current one.
 
+## 📋 Postman API Documentation
+
+**Complete API Documentation and Testing Collection:**
+
+https://employee-attendance-api.postman.co/workspace/Employee-Attendance-API-Workspa~4f8cb2d3-4f9c-4037-b956-9fbeb5673ed3/collection/37989023-5f8a4957-80d0-4c69-ba4b-916243ebf39f?action=share&creator=37989023
+
 ### Authentication Flow Example
 
 1. **Register or Login** to get access token:

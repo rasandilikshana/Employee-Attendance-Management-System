@@ -1,12 +1,11 @@
-<div class="max-w-7xl mx-auto px-6 sm:px-8 py-6">
+<div class="px-6 py-6 mx-auto max-w-7xl sm:px-8">
     <!-- Page Header -->
-    <div class="flex justify-between items-center mb-6">
+    <div class="flex items-center justify-between mb-6">
         <flux:heading size="xl">
-            <flux:icon.calendar-days class="mr-2"/>
             Attendance History
         </flux:heading>
-        
-        <flux:button 
+
+        <flux:button
             wire:click="exportData"
             variant="outline"
             icon="arrow-down-tray"
@@ -16,7 +15,7 @@
     </div>
 
     <!-- Summary Statistics -->
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
+    <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-3 lg:grid-cols-6">
         <flux:card>
             <div class="text-center">
                 <div class="text-2xl font-bold text-blue-600">{{ $summaryStats['total_days'] }}</div>
@@ -66,12 +65,12 @@
             <flux:heading size="lg">Filters</flux:heading>
         </flux:card.header>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
             <!-- Date From -->
             <flux:field>
                 <flux:label>From Date</flux:label>
-                <flux:input 
-                    type="date" 
+                <flux:input
+                    type="date"
                     wire:model.live="dateFrom"
                 />
             </flux:field>
@@ -79,8 +78,8 @@
             <!-- Date To -->
             <flux:field>
                 <flux:label>To Date</flux:label>
-                <flux:input 
-                    type="date" 
+                <flux:input
+                    type="date"
                     wire:model.live="dateTo"
                 />
             </flux:field>
@@ -110,7 +109,7 @@
             <!-- Clear Filters -->
             <flux:field>
                 <flux:label>&nbsp;</flux:label>
-                <flux:button 
+                <flux:button
                     wire:click="clearFilters"
                     variant="outline"
                     icon="x-mark"
@@ -125,7 +124,7 @@
     <!-- Attendance Records Table -->
     <flux:card>
         <flux:card.header>
-            <div class="flex justify-between items-center">
+            <div class="flex items-center justify-between">
                 <flux:heading size="lg">Attendance Records</flux:heading>
                 <div class="text-sm text-zinc-600 dark:text-zinc-400">
                     {{ $attendanceRecords->total() }} records found
@@ -146,7 +145,7 @@
                     <flux:column>Approved</flux:column>
                     <flux:column>Notes</flux:column>
                 </flux:columns>
-                
+
                 <flux:rows>
                     @foreach($attendanceRecords as $record)
                         <flux:row :key="$record->id">
@@ -154,11 +153,11 @@
                                 <div class="font-medium">{{ $record->date->format('M j, Y') }}</div>
                                 <div class="text-sm text-zinc-500">{{ $record->date->diffForHumans() }}</div>
                             </flux:cell>
-                            
+
                             <flux:cell>
                                 <div class="font-medium">{{ $record->date->format('l') }}</div>
                             </flux:cell>
-                            
+
                             <flux:cell>
                                 @if($record->check_in_time)
                                     <div class="font-medium {{ $record->status === 'late' ? 'text-orange-600' : 'text-green-600' }}">
@@ -171,7 +170,7 @@
                                     <span class="text-zinc-400">--:--:--</span>
                                 @endif
                             </flux:cell>
-                            
+
                             <flux:cell>
                                 @if($record->check_out_time)
                                     <span class="font-medium text-blue-600">
@@ -181,7 +180,7 @@
                                     <span class="text-zinc-400">--:--:--</span>
                                 @endif
                             </flux:cell>
-                            
+
                             <flux:cell>
                                 @if($record->work_hours)
                                     <div class="font-medium">
@@ -196,7 +195,7 @@
                                     <span class="text-zinc-400">--</span>
                                 @endif
                             </flux:cell>
-                            
+
                             <flux:cell>
                                 @if($record->break_duration)
                                     <span class="text-sm">{{ $record->break_duration }} min</span>
@@ -204,7 +203,7 @@
                                     <span class="text-zinc-400">--</span>
                                 @endif
                             </flux:cell>
-                            
+
                             <flux:cell>
                                 @php
                                     $statusColors = [
@@ -218,7 +217,7 @@
                                     {{ ucfirst($record->status) }}
                                 </flux:badge>
                             </flux:cell>
-                            
+
                             <flux:cell>
                                 @if($record->is_approved)
                                     <div class="flex items-center text-green-600">
@@ -237,16 +236,16 @@
                                     </div>
                                 @endif
                             </flux:cell>
-                            
+
                             <flux:cell>
                                 @if($record->notes)
                                     <div class="max-w-xs">
-                                        <div class="text-sm text-zinc-700 dark:text-zinc-300 truncate" title="{{ $record->notes }}">
+                                        <div class="text-sm truncate text-zinc-700 dark:text-zinc-300" title="{{ $record->notes }}">
                                             {{ $record->notes }}
                                         </div>
                                     </div>
                                 @else
-                                    <span class="text-zinc-400 text-sm">No notes</span>
+                                    <span class="text-sm text-zinc-400">No notes</span>
                                 @endif
                             </flux:cell>
                         </flux:row>
@@ -260,10 +259,10 @@
             </div>
         @else
             <!-- Empty State -->
-            <div class="text-center py-12">
+            <div class="py-12 text-center">
                 <flux:icon.calendar-days class="mx-auto mb-4 text-zinc-400" size="3xl"/>
                 <flux:heading size="lg" class="mb-2">No Records Found</flux:heading>
-                <p class="text-zinc-600 dark:text-zinc-400 mb-4">
+                <p class="mb-4 text-zinc-600 dark:text-zinc-400">
                     No attendance records match your current filters.
                 </p>
                 <div class="flex justify-center space-x-3">

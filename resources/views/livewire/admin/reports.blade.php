@@ -1,8 +1,7 @@
-<div class="max-w-7xl mx-auto px-6 sm:px-8 py-6">
+<div class="px-6 py-6 mx-auto max-w-7xl sm:px-8">
     <!-- Page Header -->
-    <div class="flex justify-between items-center mb-6">
+    <div class="flex items-center justify-between mb-6">
         <flux:heading size="xl">
-            <flux:icon.chart-bar class="mr-2"/>
             Reports & Analytics
         </flux:heading>
         
@@ -16,7 +15,7 @@
     </div>
 
     <!-- Overall Statistics -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+    <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-4">
         <flux:card>
             <div class="text-center">
                 <div class="text-2xl font-bold text-blue-600">{{ $overallStats['total_employees'] }}</div>
@@ -52,7 +51,7 @@
             <flux:heading size="lg">Filter & Generate Reports</flux:heading>
         </flux:card.header>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
             <!-- Date From -->
             <flux:field>
                 <flux:label>From Date</flux:label>
@@ -93,7 +92,7 @@
         </div>
     </flux:card>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+    <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2">
         <!-- Monthly Trends -->
         <flux:card>
             <flux:card.header>
@@ -102,7 +101,7 @@
 
             <div class="space-y-4">
                 @foreach($monthlyTrends as $trend)
-                    <div class="flex items-center justify-between p-3 bg-zinc-50 dark:bg-zinc-800 rounded-lg">
+                    <div class="flex items-center justify-between p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800">
                         <div class="font-medium">{{ $trend['month'] }}</div>
                         <div class="flex space-x-4 text-sm">
                             <span class="text-blue-600">{{ $trend['records'] }} records</span>
@@ -121,9 +120,9 @@
 
             <div class="space-y-3">
                 @forelse($topPerformers as $index => $performer)
-                    <div class="flex items-center justify-between p-3 bg-zinc-50 dark:bg-zinc-800 rounded-lg">
+                    <div class="flex items-center justify-between p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800">
                         <div class="flex items-center space-x-3">
-                            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900">
+                            <div class="flex items-center justify-center w-8 h-8 bg-blue-100 rounded-lg dark:bg-blue-900">
                                 <span class="text-sm font-bold text-blue-600">{{ $index + 1 }}</span>
                             </div>
                             <div>
@@ -136,7 +135,7 @@
                         </div>
                     </div>
                 @empty
-                    <div class="text-center py-4 text-zinc-500">
+                    <div class="py-4 text-center text-zinc-500">
                         No performance data available for selected period.
                     </div>
                 @endforelse
@@ -220,7 +219,7 @@
                                     <span class="font-medium">{{ $data['total_days'] }}</span>
                                 </flux:cell>
                                 <flux:cell>
-                                    <span class="text-green-600 font-medium">{{ $data['present_days'] }}</span>
+                                    <span class="font-medium text-green-600">{{ $data['present_days'] }}</span>
                                 </flux:cell>
                                 <flux:cell>
                                     @if($data['late_days'] > 0)
@@ -247,7 +246,7 @@
                     </flux:rows>
                 </flux:table>
             @else
-                <div class="text-center py-8">
+                <div class="py-8 text-center">
                     <flux:icon.chart-bar class="mx-auto mb-4 text-zinc-400" size="3xl"/>
                     <flux:heading size="lg" class="mb-2">No Data Available</flux:heading>
                     <p class="text-zinc-600 dark:text-zinc-400">
@@ -336,7 +335,7 @@
                     </flux:rows>
                 </flux:table>
             @else
-                <div class="text-center py-8">
+                <div class="py-8 text-center">
                     <flux:icon.calendar-days class="mx-auto mb-4 text-zinc-400" size="3xl"/>
                     <flux:heading size="lg" class="mb-2">No Records Found</flux:heading>
                     <p class="text-zinc-600 dark:text-zinc-400">

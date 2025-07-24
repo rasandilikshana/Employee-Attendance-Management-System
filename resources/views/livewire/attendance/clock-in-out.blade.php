@@ -1,6 +1,6 @@
 <div class="max-w-4xl px-6 py-6 mx-auto sm:px-8">
     <!-- Page Header -->
-    <flux:heading size="lg" class="mb-6">
+    <flux:heading size="xl" class="mb-6">
         Clock In/Out
     </flux:heading>
 

@@ -1,8 +1,7 @@
-<div class="max-w-7xl mx-auto px-6 sm:px-8 py-6">
+<div class="px-6 py-6 mx-auto max-w-7xl sm:px-8">
     <!-- Page Header -->
-    <div class="flex justify-between items-center mb-6">
+    <div class="flex items-center justify-between mb-6">
         <flux:heading size="xl">
-            <flux:icon.users class="mr-2"/>
             User Management
         </flux:heading>
         
@@ -16,7 +15,7 @@
     </div>
 
     <!-- Statistics Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+    <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-5">
         <flux:card>
             <div class="text-center">
                 <div class="text-2xl font-bold text-blue-600">{{ $stats['total_users'] }}</div>
@@ -59,7 +58,7 @@
             <flux:heading size="lg">Filters</flux:heading>
         </flux:card.header>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
             <!-- Search -->
             <flux:field>
                 <flux:label>Search Users</flux:label>
@@ -98,7 +97,7 @@
     <!-- Users Table -->
     <flux:card>
         <flux:card.header>
-            <div class="flex justify-between items-center">
+            <div class="flex items-center justify-between">
                 <flux:heading size="lg">Users</flux:heading>
                 <div class="text-sm text-zinc-600 dark:text-zinc-400">
                     {{ $users->total() }} users found
@@ -122,7 +121,7 @@
                         <flux:row :key="$user->id">
                             <flux:cell>
                                 <div class="flex items-center space-x-3">
-                                    <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-200 dark:bg-zinc-700">
+                                    <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-zinc-200 dark:bg-zinc-700">
                                         <span class="text-sm font-semibold">
                                             {{ $user->name[0] ?? '?' }}
                                         </span>
@@ -221,10 +220,10 @@
             </div>
         @else
             <!-- Empty State -->
-            <div class="text-center py-12">
+            <div class="py-12 text-center">
                 <flux:icon.users class="mx-auto mb-4 text-zinc-400" size="3xl"/>
                 <flux:heading size="lg" class="mb-2">No Users Found</flux:heading>
-                <p class="text-zinc-600 dark:text-zinc-400 mb-4">
+                <p class="mb-4 text-zinc-600 dark:text-zinc-400">
                     @if($search || $roleFilter)
                         No users match your current filters.
                     @else
