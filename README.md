@@ -22,11 +22,12 @@ A comprehensive web-based employee attendance management system built with Larav
 ## Tech Stack
 
 - **Backend:** Laravel 11
-- **Frontend:** Vue.js with Vite
+- **Frontend:** Livewire + Flux (Blade Components) with Alpine.js
 - **Database:** MySQL
 - **Authentication:** Laravel Passport (OAuth2)
 - **Authorization:** Spatie Laravel Permission
 - **Styling:** Tailwind CSS
+- **Build Tool:** Vite
 
 ## Prerequisites
 
@@ -373,7 +374,7 @@ https://employee-attendance-api.postman.co/workspace/Employee-Attendance-API-Wor
    php artisan serve
    ```
 
-2. **Frontend (Vite):**
+2. **Frontend Assets (Vite - for Tailwind CSS & Alpine.js):**
    ```bash
    npm run dev
    ```
@@ -411,14 +412,19 @@ php artisan test
 ```
 ├── app/
 │   ├── Http/Controllers/Api/    # API Controllers
-│   ├── Models/                  # Eloquent Models
+│   ├── Livewire/               # Livewire Component Classes
+│   ├── Models/                 # Eloquent Models
 │   └── Providers/              # Service Providers
 ├── database/
 │   ├── migrations/             # Database Migrations
 │   └── seeders/               # Database Seeders
 ├── resources/
-│   ├── js/                    # Vue.js Components
-│   └── views/                 # Blade Templates
+│   ├── js/                    # Alpine.js & JavaScript
+│   ├── css/                   # Tailwind CSS
+│   └── views/                 # Blade Templates & Livewire Components
+│       ├── livewire/         # Livewire Component Views
+│       ├── flux/             # Flux UI Components
+│       └── components/       # Blade Components
 ├── routes/
 │   ├── api.php               # API Routes
 │   └── web.php               # Web Routes
